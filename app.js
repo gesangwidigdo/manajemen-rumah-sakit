@@ -16,10 +16,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Import routes
-const tesRoute = require('./routes/tesRoutes');
+const dokterRoute = require('./routes/dokter.route');
 
 // Routes middleware
-app.use('/', tesRoute);
+app.use('/dokter', dokterRoute);
+
+app.use((error, req, res, next) => {
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+});
 
 app.listen(port, () => {
     console.log(`Server running at ${port}`);
