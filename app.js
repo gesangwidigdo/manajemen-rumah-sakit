@@ -17,9 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Import routes
 const dokterRoute = require('./routes/dokter.route');
+const pasienRoute = require('./routes/pasien.route');
 
 // Routes middleware
 app.use('/dokter', dokterRoute);
+app.use('/pasien', pasienRoute);
 
 app.use((error, req, res, next) => {
     res.status(500).json({ message: 'Internal Server Error', error: error.message });
