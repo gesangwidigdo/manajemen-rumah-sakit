@@ -1,29 +1,29 @@
 const dokterRepository = require('../repositories/dokterRepository');
 
-const createDokter = async (dokter) => {
-    return await dokterRepository.insertDokter(dokter);
+const insertData = async (dokter) => {
+    return await dokterRepository.insert(dokter);
 };
 
-const getAllDokter = async () => {
-    return await dokterRepository.getAllDokter();
+const getAllData = async () => {
+    return await dokterRepository.getAll();
 }
 
-const getDokterById = async (id_dokter) => {
-    return await dokterRepository.getDokterById(id_dokter);
+const getDataById = async (id_dokter) => {
+    return await dokterRepository.getById(id_dokter);
 }
 
-const updateDokter = async (id_dokter, dokter) => {
-    return await dokterRepository.updateDokter(id_dokter, dokter);
+const updateData = async (id_dokter, dokter) => {
+    return await dokterRepository.update(id_dokter, dokter);
 }
 
-const deleteDokter = async (id_dokter) => {
-    return await dokterRepository.deleteDokter(id_dokter);
+const deleteData = async (id_dokter) => {
+    return await dokterRepository.remove(id_dokter);
 }
 
 module.exports = {
-    createDokter,
-    getAllDokter,
-    getDokterById,
-    updateDokter,
-    deleteDokter
+    insertData,
+    getAllData,
+    getDataById,
+    updateData,
+    deleteData
 }

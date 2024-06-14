@@ -1,23 +1,23 @@
 const db = require('../config/db.config');
 
-const insertDokter = async (dokter) => {
+const insert = async (dokter) => {
     const [result] = await db.execute(
-        'INSERT INTO dokter (nama_dokter, spesialisasi, nomor_telepon, jadwal_praktek) VALUES (?, ?, ?, ?)',
-        [dokter.nama_dokter, dokter.spesialisasi, dokter.nomor_telepon, dokter.jadwal_praktek]
+        'INSERT INTO dokter (nama_dokter, spesialisasi, jadwal, nomor_telepon) VALUES (?, ?, ?, ?)',
+        [dokter.nama_dokter, dokter.spesialisasi, dokter.jadwal, dokter.nomor_telepon]
     );
     return result;
 };
 
-const getAllDokter = async () => {
+const getAll = async () => {
     const [result] = await db.execute(
-        'SELECT id_dokter, nama_dokter, spesialisasi, nomor_telepon, jadwal_praktek FROM dokter'
+        'SELECT id_dokter, nama_dokter, spesialisasi, jadwal, nomor_telepon FROM dokter'
     );
     return result;
 }
 
-const getDokterById = async (id_dokter) => {
+const getById = async (id_dokter) => {
     const [result] = await db.execute(
-        'SELECT id_dokter, nama_dokter, spesialisasi, nomor_telepon, jadwal_praktek \
+        'SELECT id_dokter, nama_dokter, spesialisasi, jadwal, nomor_telepon \
         FROM dokter \
         WHERE id_dokter = ?',
         [id_dokter]
@@ -25,31 +25,30 @@ const getDokterById = async (id_dokter) => {
     return result;
 }
 
-const updateDokter = async (id_dokter, dokter) => {
+const update = async (id_dokter, dokter) => {
     const [result] = await db.execute(
         `
         UPDATE dokter
-        SET nama_dokter = ?, spesialisasi = ?, nomor_telepon = ?, jadwal_praktek = ?
+        SET nama_dokter = ?, spesialisasi = ?, jadwal = ?, nomor_telepon = ?
         WHERE id_dokter = ?
         `,
-        [dokter.nama_dokter, dokter.spesialisasi, dokter.nomor_telepon, dokter.jadwal_praktek, id_dokter]
+        [dokter.nama_dokter, dokter.spesialisasi, dokter.jadwal, dokter.nomor_telepon, id_dokter]
     );
+    return result;
 }
 
-const deleteDokter = async (id_dokter) => {
+const remove = async (id_dokter) => {
     const [result] = await db.execute(
-        `
-        DELETE FROM dokter WHERE id_dokter = ?
-        `,
+        'DELETE FROM dokter WHERE id_dokter = ?',
         [id_dokter]
     );
     return result;
 }
 
 module.exports = {
-    insertDokter,
-    getAllDokter,
-    getDokterById,
-    updateDokter,
-    deleteDokter
+    insert,
+    getAll,
+    getById,
+    update,
+    remove
 }
