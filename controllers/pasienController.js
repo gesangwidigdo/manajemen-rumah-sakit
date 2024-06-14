@@ -22,7 +22,24 @@ const getPasienById = async (req, res, next) => {
     }
 }
 
+const addPasien = async (req, res, next) => {
+    const { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi } = req.body;
+
+    if (!nama || !tanggal_lahir || !jenis_kelamin || !alamat || !nomor_telepon || !asuransi) {
+        return res.status(400).json({ error: 'All fields must filled' });
+    }
+
+    try {
+        const pasien = { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi };
+        const result = await pasienService.addPasien(pasien);
+        res.status(200).json({success: true, id: result.insertId, data: pasien});
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     getAllPasien,
     getPasienById,
+    addPasien,
 };

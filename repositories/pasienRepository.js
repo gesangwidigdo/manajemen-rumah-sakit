@@ -15,7 +15,16 @@ const getPasienById = async (id_pasien) => {
     return result;
 }
 
+const addPasien = async (pasien) => {
+    const [result] = await db.execute(
+        'INSERT INTO pasien (nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi) VALUES (?, ?, ?, ?, ?, ?)',
+        [pasien.nama, pasien.tanggal_lahir, pasien.jenis_kelamin, pasien.alamat, pasien.nomor_telepon, pasien.asuransi]
+    );
+    return result;
+}
+
 module.exports = {
     getAllPasien,
     getPasienById,
+    addPasien,
 };
