@@ -2,7 +2,7 @@ const pasienService = require('../services/pasienService');
 
 const getAllPasien = async (req, res, next) => {
     try {
-        const result = await pasienService.getAllPasien();
+        const result = await pasienService.getAllData();
         res.status(200).json(result);
     } catch (error) {
         console.log('Error retrieving pasien: ', error);
@@ -14,7 +14,7 @@ const getPasienById = async (req, res, next) => {
     const { id_pasien } = req.params;
 
     try {
-        const result = await pasienService.getPasienById(id_pasien);
+        const result = await pasienService.getDataById(id_pasien);
         res.status(200).json(result);
     } catch (error) {
         console.error('Error retrieving pasien: ', error);
@@ -31,7 +31,7 @@ const addPasien = async (req, res, next) => {
 
     try {
         const pasien = { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi };
-        const result = await pasienService.addPasien(pasien);
+        const result = await pasienService.insertData(pasien);
         res.status(200).json({success: true, id: result.insertId, data: pasien});
     } catch (error) {
         res.status(500).json(error);

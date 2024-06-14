@@ -1,19 +1,19 @@
 const pasienRepository = require('../repositories/pasienRepository');
 
-const getAllPasien = async () => {
-    return await pasienRepository.getAllPasien();
+const getAllData = async () => {
+    return await pasienRepository.getAll();
 };
 
-const getPasienById = async (id_pasien) => {
-    return await pasienRepository.getPasienById(id_pasien);
+const getDataById = async (id_pasien) => {
+    return await pasienRepository.getById(id_pasien);
 }
 
-const addPasien = async (pasien) => {
-    return await pasienRepository.addPasien(pasien);
+const insertData = async (pasien) => {
+    return await pasienRepository.insert(pasien);
 }
 
 module.exports = {
-    getAllPasien,
-    getPasienById,
-    addPasien,
+    getAllData,
+    getDataById,
+    insertData,
 };
