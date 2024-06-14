@@ -38,8 +38,26 @@ const addPasien = async (req, res, next) => {
     }
 }
 
+const updatePasien = async (req, res, next) => {
+    const { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi } = req.body;
+    const { id_pasien } = req.params;
+
+    if (!nama || !tanggal_lahir || !jenis_kelamin || !alamat || !nomor_telepon || !asuransi) {
+        return res.status(400).json({ error: 'All fields must filled' });
+    }
+
+    try {
+        const pasien = { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi };
+        const result = await pasienService.updateData(id_pasien, pasien);
+        res.status(200).json({success: true, message: 'Success Updating Data', data: pasien});
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     getAllPasien,
     getPasienById,
     addPasien,
+    updatePasien,
 };

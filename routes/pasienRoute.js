@@ -5,5 +5,6 @@ const pasienController = require('../controllers/pasienController');
 router.get('/', pasienController.getAllPasien);
 router.get('/:id_pasien', pasienController.getPasienById);
 router.post('/', pasienController.addPasien);
+router.put('/:id_pasien', pasienController.updatePasien);
 
 module.exports = router;

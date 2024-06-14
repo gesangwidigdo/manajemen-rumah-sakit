@@ -12,8 +12,13 @@ const insertData = async (pasien) => {
     return await pasienRepository.insert(pasien);
 }
 
+const updateData = async (id_pasien, pasien) => {
+    return await pasienRepository.update(id_pasien, pasien);
+}
+
 module.exports = {
     getAllData,
     getDataById,
     insertData,
+    updateData,
 };

@@ -23,8 +23,18 @@ const insert = async (pasien) => {
     return result;
 }
 
+const update = async (id_pasien, pasien) => {
+    const [result] = await db.execute(
+        `UPDATE PASIEN
+        SET nama = ?, tanggal_lahir = ?, jenis_kelamin = ?, alamat = ?, nomor_telepon = ?, asuransi = ?
+        WHERE id_pasien = ?`,
+        [pasien.nama, pasien.tanggal_lahir, pasien.jenis_kelamin, pasien.alamat, pasien.nomor_telepon, pasien.asuransi, id_pasien]
+    );
+}
+
 module.exports = {
     getAll,
     getById,
     insert,
+    update,
 };
