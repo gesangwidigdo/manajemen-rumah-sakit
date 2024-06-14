@@ -32,9 +32,18 @@ const update = async (id_pasien, pasien) => {
     );
 }
 
+const remove = async (id_pasien) => {
+    const [result] = await db.execute(
+        'DELETE FROM pasien WHERE id_pasien = ?', 
+        [id_pasien]
+    );
+    return result;
+}
+
 module.exports = {
     getAll,
     getById,
     insert,
     update,
+    remove,
 };

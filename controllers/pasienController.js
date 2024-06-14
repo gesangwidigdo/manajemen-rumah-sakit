@@ -55,9 +55,30 @@ const updatePasien = async (req, res, next) => {
     }
 }
 
+const deletePasien = async (req, res, next) => {
+    const { id_pasien } = req.params;
+
+    if (!id_pasien) {
+        return res.status(400).json({ error: 'id_pasien is required!' });
+    }
+    
+    try {
+        const result = await pasienService.deleteData(id_pasien);
+
+        if (result.affectedRows > 0) {
+            res.status(200).json({ success: true, message: 'Success Deleting Data', id: id_pasien });
+        } else {
+            res.status(404).json({ success: false, message: 'Dokter not found!' });
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     getAllPasien,
     getPasienById,
     addPasien,
     updatePasien,
+    deletePasien,
 };
