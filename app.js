@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Import routes
-const dokterRoute = require('./routes/dokter.route');
-const pasienRoute = require('./routes/pasien.route');
+const dokterRoute = require('./routes/dokterRoute');
+const pasienRoute = require('./routes/pasienRoute');
 
 // Routes middleware
 app.use('/dokter', dokterRoute);
