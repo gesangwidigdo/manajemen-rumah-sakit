@@ -32,7 +32,7 @@ const addPasien = async (req, res, next) => {
     try {
         const pasien = { nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi };
         const result = await pasienService.insertData(pasien);
-        res.status(200).json({success: true, id: result.insertId, data: pasien});
+        res.status(200).json({success: true, data: pasien});
     } catch (error) {
         res.status(500).json(error);
     }
