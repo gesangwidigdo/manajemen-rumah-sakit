@@ -17,7 +17,8 @@ const getById = async (id_pasien) => {
 
 const insert = async (pasien) => {
     const [result] = await db.execute(
-        'INSERT INTO pasien (nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi) VALUES (?, ?, ?, ?, ?, ?)',
+        // 'INSERT INTO pasien (nama, tanggal_lahir, jenis_kelamin, alamat, nomor_telepon, asuransi) VALUES (?, ?, ?, ?, ?, ?)',
+        'CALL add_pasien(?, ?, ?, ?, ?, ?)',
         [pasien.nama, pasien.tanggal_lahir, pasien.jenis_kelamin, pasien.alamat, pasien.nomor_telepon, pasien.asuransi]
     );
     return result;
@@ -25,11 +26,13 @@ const insert = async (pasien) => {
 
 const update = async (id_pasien, pasien) => {
     const [result] = await db.execute(
-        `UPDATE PASIEN
-        SET nama = ?, tanggal_lahir = ?, jenis_kelamin = ?, alamat = ?, nomor_telepon = ?, asuransi = ?
-        WHERE id_pasien = ?`,
-        [pasien.nama, pasien.tanggal_lahir, pasien.jenis_kelamin, pasien.alamat, pasien.nomor_telepon, pasien.asuransi, id_pasien]
+        // `UPDATE PASIEN
+        // SET nama = ?, tanggal_lahir = ?, jenis_kelamin = ?, alamat = ?, nomor_telepon = ?, asuransi = ?
+        // WHERE id_pasien = ?`,
+        'CALL update_pasien(?, ?, ?, ?, ?, ?, ?)',
+        [id_pasien, pasien.nama, pasien.tanggal_lahir, pasien.jenis_kelamin, pasien.alamat, pasien.nomor_telepon, pasien.asuransi]
     );
+    return result;
 }
 
 const remove = async (id_pasien) => {

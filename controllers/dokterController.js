@@ -8,11 +8,11 @@ const addDokter = async (req, res, next)  => {
 
     try {
         const dokter = { nama_dokter, spesialisasi, nomor_telepon, jadwal };
-        const result = await dokterService.insertData(dokter);
-        req.createdDokter = { id: result.insertId, ...dokter };
+        await dokterService.insertData(dokter);
+        res.status(200).json({ success: true, data: dokter });
         next();
     } catch (error) {
-        next(error);
+        res.status(500).json(error);
     }
 }
 

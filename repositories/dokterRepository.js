@@ -2,10 +2,10 @@ const db = require('../config/db.config');
 
 const insert = async (dokter) => {
     const [result] = await db.execute(
-        'INSERT INTO dokter (nama_dokter, spesialisasi, jadwal, nomor_telepon) VALUES (?, ?, ?, ?)',
+        // 'INSERT INTO dokter (nama_dokter, spesialisasi, jadwal, nomor_telepon) VALUES (?, ?, ?, ?)',
+        'CALL add_dokter(?, ?, ?, ?)',
         [dokter.nama_dokter, dokter.spesialisasi, dokter.jadwal, dokter.nomor_telepon]
     );
-    return result;
 };
 
 const getAll = async () => {
