@@ -15,6 +15,10 @@ const insertData = async (obat) => {
 
 const updateData = async (id_obat, obat) => {
     return await obatRepository.update(id_obat, obat);
+};
+
+const updateStokObat = async (id_obat, stokObat) => {
+    return await obatRepository.updateStok(id_obat, stokObat);
 }
 
 module.exports = {
@@ -22,4 +26,5 @@ module.exports = {
     getDataById,
     insertData,
     updateData,
+    updateStokObat,
 };

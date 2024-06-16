@@ -51,6 +51,24 @@ const updateObat = async (req, res, next) => {
     } catch (error) {
         res.status(500).json(error);
     }
+};
+
+const updateStokObat = async (req, res, next) => {
+    const { stok } = req.body;
+    const { id_obat } = req.params;
+
+    if (!stok) {
+        res.status(400).json({ error: 'Stok field must filled' });
+    }
+
+    try {
+        const stokObat = stok;
+        // console.log(stokObat);
+        const result = await obatService.updateStokObat(id_obat, stokObat);
+        res.status(200).json({ success: true, message: 'Success Updating Data', data: stokObat });
+    } catch (error) {
+        res.status(500).json(error);
+    }
 }
 
 module.exports = {
@@ -58,4 +76,5 @@ module.exports = {
     getObatById,
     addObat,
     updateObat,
+    updateStokObat,
 }

@@ -36,9 +36,18 @@ const update = async (id_obat, obat) => {
     return result;
 };
 
+const updateStok = async (id_obat, stokObat) => {
+    const [result] = await db.execute(
+        'CALL update_stok_obat(?, ?)',
+        [id_obat, stokObat]
+    );
+    return result;
+}
+
 module.exports = {
     getAll,
     getById,
     insert,
     update,
+    updateStok,
 };
