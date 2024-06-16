@@ -23,7 +23,7 @@ const getRawatInapById = async (req, res, next) => {
 const addRawatInap = async (req, res, next) => {
     const { nomor_kamar, status, tanggal_masuk, tanggal_keluar, diagnosis, pasien_id_pasien, dokter_id_dokter, resep_id_resep, pembayaran_id_pembayaran } = req.body;
 
-    if (!nomor_kamar, !status, !tanggal_masuk, !tanggal_keluar, !diagnosis, !pasien_id_pasien, !dokter_id_dokter, !resep_id_resep, !pembayaran_id_pembayaran) {
+    if (!nomor_kamar || !status || !tanggal_masuk || !tanggal_keluar || !diagnosis || !pasien_id_pasien || !dokter_id_dokter || !resep_id_resep || !pembayaran_id_pembayaran) {
         res.status(400).json({ error: 'All fields must filled' });
     }
     

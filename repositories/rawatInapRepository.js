@@ -1,14 +1,14 @@
 const db = require('../config/db.config');
 
 const getAll = async () => {
-    const [result] = db.execute(
+    const [result] = await db.execute(
         'SELECT * FROM rawat_inap'
     );
     return result;
 };
 
 const getById = async (id_rawat_inap) => {
-    const [result] = db.execute(
+    const [result] = await db.execute(
         'SELECT * FROM rawat_inap WHERE id_rawat_inap = ?',
         [id_rawat_inap]
     );
@@ -16,7 +16,7 @@ const getById = async (id_rawat_inap) => {
 };
 
 const insert = async (rawat_inap) => {
-    const [result] = db.execute(
+    const [result] = await db.execute(
         'CALL add_rawat_inap(?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
             rawat_inap.nomor_kamar, 
@@ -34,7 +34,7 @@ const insert = async (rawat_inap) => {
 }
 
 const update = async (id_rawat_inap, rawat_inap) => {
-    const [result] = db.execute(
+    const [result] = await db.execute(
         'CALL update_rawat_inap(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
             id_rawat_inap,
