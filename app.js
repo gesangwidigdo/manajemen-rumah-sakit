@@ -25,15 +25,17 @@ const resepRoute = require('./routes/resepRoute');
 const rawatInapRoute = require('./routes/rawatInapRoute');
 const pembayaranRoute = require('./routes/pembayaranRoute');
 const rawatJalanRoute = require('./routes/rawatJalanRoute');
+const resepObatRoute = require('./routes/resepObatRoute');
 
 // Routes middleware
 app.use('/dokter', dokterRoute);
 app.use('/pasien', pasienRoute);
 app.use('/obat', obatRoute);
 app.use('/resep', resepRoute);
-app.use('/rawatInap', rawatInapRoute);
+app.use('/rawat_inap', rawatInapRoute);
 app.use('/pembayaran', pembayaranRoute);
-app.use('/rawatJalan', rawatJalanRoute);
+app.use('/rawat_jalan', rawatJalanRoute);
+app.use('/resep_obat', resepObatRoute);
 
 app.use((error, req, res, next) => {
     res.status(500).json({ message: 'Internal Server Error', error: error.message });
