@@ -18,9 +18,22 @@ const getResepObatByIdResep = async (req, res, next) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
+
+const addResepObat = async (req, res, next) => {
+    const { kuantitas, obat_id_obat, resep_id_resep } = req.body;
+
+    try {
+        const resepObat = { kuantitas, obat_id_obat, resep_id_resep };
+        const result = await resepObatService.addData(resepObat);
+        res.status(200).json({ success: true, data: resepObat });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
 
 module.exports = {
     getAllResepObat,
     getResepObatByIdResep,
+    addResepObat,
 };
