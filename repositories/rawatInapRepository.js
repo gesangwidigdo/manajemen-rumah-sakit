@@ -2,7 +2,8 @@ const db = require('../config/db.config');
 
 const getAll = async () => {
     const [result] = await db.execute(
-        'SELECT * FROM rawat_inap'
+        `SELECT * FROM rawat_inap ri
+        JOIN pasien p ON p.id_pasien = ri.pasien_id_pasien`
     );
     return result;
 };
