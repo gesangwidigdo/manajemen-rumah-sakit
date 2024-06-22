@@ -8,10 +8,6 @@ const getDataById = async (id_rawat_jalan) => {
     return await rawatJalanRepository.getById(id_rawat_jalan);
 }
 
-const checkIdPasien = async (id_pasien) => {
-    return await rawatJalanRepository.checkId(id_pasien);
-}
-
 const addData = async (rawat_jalan) => {
     return await rawatJalanRepository.insert(rawat_jalan);
 }
@@ -25,5 +21,4 @@ module.exports = {
     getDataById,
     addData,
     updateData,
-    checkIdPasien,
 };

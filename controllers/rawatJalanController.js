@@ -1,4 +1,5 @@
 const rawatJalanService = require('../services/rawatJalanService');
+const utilService = require('../services/utilService');
 
 const getAllRawatJalan = async (req, res, next) => {
     try {
@@ -30,7 +31,7 @@ const addRawatJalan = async (req, res, next) => {
     try {
         const rawat_jalan = { status, tanggal_diperiksa, diagnosis, pasien_id_pasien, dokter_id_dokter, resep_id_resep, pembayaran_id_pembayaran };
 
-        const checkIdResult = await rawatJalanService.checkIdPasien(rawat_jalan.pasien_id_pasien);
+        const checkIdResult = await utilService.checkIdPasien(rawat_jalan.pasien_id_pasien);
         // res.status(200).json({ id_res: checkIdResult });
         const checkIdResVal = checkIdResult;
         console.log(checkIdResVal);
