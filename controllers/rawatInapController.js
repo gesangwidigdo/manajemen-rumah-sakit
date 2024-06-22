@@ -1,4 +1,5 @@
 const rawatInapService = require('../services/rawatInapService');
+const utilService = require('../services/utilService');
 
 const getAllRawatInap = async (req, res, next) => {
     try {
@@ -29,8 +30,16 @@ const addRawatInap = async (req, res, next) => {
     
     try {
         const rawat_inap = { nomor_kamar, status, tanggal_masuk, tanggal_keluar, diagnosis, pasien_id_pasien, dokter_id_dokter, resep_id_resep, pembayaran_id_pembayaran };
-        const result = await rawatInapService.addData(rawat_inap);
-        res.status(200).json({ success: true, data: rawat_inap });
+
+        const checkIdResult = await utilService.checkIdPasien(rawat_inap.pasien_id_pasien);
+        const checkIdResVal = checkIdResult;
+        
+        if (checkIdResVal) {
+            const result = await rawatInapService.addData(rawat_inap);
+            res.status(200).json({ success: true, data: rawat_inap });
+        } else {
+            res.status(404).json({ success: false, error: 'id_pasien not registered yet' });
+        }
     } catch (error) {
         res.status(500).json(error);
     }
