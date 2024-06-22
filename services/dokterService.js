@@ -20,10 +20,15 @@ const deleteData = async (id_dokter) => {
     return await dokterRepository.remove(id_dokter);
 }
 
+const getAllSpesial = async () => {
+    return await dokterRepository.spesialisasi();
+}
+
 module.exports = {
     insertData,
     getAllData,
     getDataById,
     updateData,
-    deleteData
+    deleteData,
+    getAllSpesial,
 }

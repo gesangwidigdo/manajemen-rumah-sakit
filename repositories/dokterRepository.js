@@ -45,10 +45,19 @@ const remove = async (id_dokter) => {
     return result;
 }
 
+const spesialisasi = async () => {
+    console.log("ok");
+    const [result] = await db.execute(
+        'SELECT DISTINCT spesialisasi FROM dokter'
+    );
+    return result;
+}
+
 module.exports = {
     insert,
     getAll,
     getById,
     update,
-    remove
+    remove,
+    spesialisasi,
 }
