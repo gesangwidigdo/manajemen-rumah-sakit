@@ -15,6 +15,14 @@ const getById = async (id_rawat_jalan) => {
     return result
 };
 
+const checkId = async (id_pasien) => {
+    const [result] = await db.execute(
+        'SELECT cek_id_pasien(?) AS cekIdRes',
+        [id_pasien]
+    );
+    return result[0].cekIdRes;
+}
+
 const insert = async (rawat_jalan) => {
     const [result] = await db.execute(
         'CALL add_rawat_jalan(?, ?, ?, ?, ?, ?, ?)',
@@ -53,4 +61,5 @@ module.exports = {
     getById,
     insert,
     update,
+    checkId,
 };

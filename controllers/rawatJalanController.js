@@ -29,8 +29,18 @@ const addRawatJalan = async (req, res, next) => {
     
     try {
         const rawat_jalan = { status, tanggal_diperiksa, diagnosis, pasien_id_pasien, dokter_id_dokter, resep_id_resep, pembayaran_id_pembayaran };
-        const result = await rawatJalanService.addData(rawat_jalan);
-        res.status(200).json({ success: true, data: rawat_jalan });
+
+        const checkIdResult = await rawatJalanService.checkIdPasien(rawat_jalan.pasien_id_pasien);
+        // res.status(200).json({ id_res: checkIdResult });
+        const checkIdResVal = checkIdResult;
+        console.log(checkIdResVal);
+
+        if (checkIdResVal) {
+            const result = await rawatJalanService.addData(rawat_jalan);
+            res.status(200).json({ success: true, data: rawat_jalan });
+        } else {
+            res.status(404).json({ success: false, error: 'id_pasien not registered yet' });
+        }
     } catch (error) {
         res.status(500).json(error);
     }
