@@ -4,10 +4,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 let connection = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "wendy1",
-    database: "manajemen_rumah_sakit",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 // connection.connect((error) => {
